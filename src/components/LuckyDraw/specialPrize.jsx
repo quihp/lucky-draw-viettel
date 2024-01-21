@@ -252,9 +252,9 @@ function SpecialPrize() {
                     setWinnerNumber(winnerNumber);
                     setWinner(winner);
                     setData(data.filter((e) => e.id !== winner.id));
-                    let prevList = JSON.parse(localStorage.getItem(0)) || [];
+                    let prevList = JSON.parse(localStorage.getItem(4)) || [];
                     prevList.push(winner);
-                    localStorage.setItem(0, JSON.stringify(prevList));
+                    localStorage.setItem(4, JSON.stringify(prevList));
                   }
                   switch (i) {
                     case 0: {
