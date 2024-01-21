@@ -24,20 +24,27 @@ function LuckyDraw(props) {
   const [isOpen, setIsOpen] = useState(false);
   const timeout = 3100;
   const [data, setData] = useState(JSON.parse(localStorage.getItem("list")));
-    useEffect(() => {
-        setWinnerNumber([0, 0, 0, 0, 0, 0])
-    }, [prizeType])
+  const [audio, setAudio] = useState(new Audio("https://luckydraw.live/audio/v1/sm-roller-loop.mp3"))
+  const [winAudio, setWinAudio] = useState(new Audio("https://luckydraw.live/audio/v1/sm-spin.mp3"))
+  useEffect(() => {
+    setWinnerNumber([0, 0, 0, 0, 0, 0]);
+  }, [prizeType]);
   return (
     <div className="">
-      <div className="flex">
+      <div className="flex pb-10">
         <Confetti active={isOpen} />
         {!stop && (
-          <div className="w-full">
+          <div className="w-full ">
             <Stack
               direction="row"
               justifyContent="center"
               alignItems="center"
               spacing={2}
+              sx={{
+                background: "#393264",
+                border: "3px solid #f5db79",
+                padding: "0 16px",
+              }}
             >
               {defaultList.map((l, i) => (
                 <TextLoop
@@ -63,6 +70,11 @@ function LuckyDraw(props) {
               justifyContent="center"
               alignItems="center"
               spacing={2}
+              sx={{
+                background: "#393264",
+                border: "3px solid #f5db79",
+                padding: "0 16px",
+              }}
             >
               {winnerNumber.map((w, i) => (
                 <MovingComponent
@@ -77,7 +89,6 @@ function LuckyDraw(props) {
                   <div className="box text-white">{winnerNumber[i]}</div>
                 </MovingComponent>
               ))}
-              
             </Stack>
           </>
         )}
@@ -93,6 +104,9 @@ function LuckyDraw(props) {
           <button
             onClick={() => {
               setStop(false);
+              audio.play();
+              audio.loop = true
+              // playAudio = setInterval(() => audio.play(), 1000);
               setInterval(100);
             }}
             class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
@@ -112,7 +126,11 @@ function LuckyDraw(props) {
               localStorage.setItem(prizeType, JSON.stringify(prevList));
               setTimeout(() => {
                 setIsOpen(true);
+                winAudio.play()
+
               }, timeout);
+              audio.pause()
+              setAudio(audio)
             }}
             class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           >
@@ -124,6 +142,7 @@ function LuckyDraw(props) {
           value={winner}
           handleClose={() => setIsOpen(false)}
         />
+        
       </div>
     </div>
   );

@@ -33,23 +33,34 @@ function SpecialPrize() {
   const [isOpen, setIsOpen] = useState(false);
   const timeout = 2000;
   const [data, setData] = useState(JSON.parse(localStorage.getItem("list")));
-
+  const [audio, setAudio] = useState(
+    new Audio("https://luckydraw.live/audio/v1/sm-roller-loop.mp3")
+  );
+  const [winAudio, setWinAudio] = useState(
+    new Audio("https://luckydraw.live/audio/v1/sm-spin.mp3")
+  );
   useEffect(() => {
     if (stop1 && stop2 && stop3 && stop4 && stop5 && stop6) {
-        setIsOpen(true);
+      setIsOpen(true);
+      winAudio.play();
     }
-  }, [stop1, stop2, stop3, stop4, stop5, stop6])
+  }, [stop1, stop2, stop3, stop4, stop5, stop6]);
   return (
     <div className="">
       <div className="flex">
         <Confetti active={isOpen} />
 
-        <div className="w-full">
+        <div className="w-full pb-10">
           <Stack
             direction="row"
             justifyContent="center"
             alignItems="center"
             spacing={2}
+            sx={{
+              background: "#393264",
+              border: "3px solid #f5db79",
+              padding: "0 16px",
+            }}
           >
             {!stop1 && (
               <TextLoop
@@ -59,7 +70,7 @@ function SpecialPrize() {
                 springConfig={{ stiffness: 180, damping: 8 }}
               >
                 {defaultList[0].map((l) => (
-                  <div className="box text-white" style={{ width: 180 }}>
+                  <div className="box text-white" style={{ width: 171 }}>
                     {l}
                   </div>
                 ))}
@@ -86,13 +97,13 @@ function SpecialPrize() {
                 springConfig={{ stiffness: 180, damping: 8 }}
               >
                 {defaultList[1].map((l) => (
-                  <div className="box text-white" style={{ width: 180 }}>
+                  <div className="box text-white" style={{ width: 171 }}>
                     {l}
                   </div>
                 ))}
               </TextLoop>
             )}
-             {stop2 && (
+            {stop2 && (
               <MovingComponent
                 type={"slideInFromTop"}
                 duration={100 + 1 * 500 + "ms"}
@@ -113,7 +124,7 @@ function SpecialPrize() {
                 springConfig={{ stiffness: 180, damping: 8 }}
               >
                 {defaultList[1].map((l) => (
-                  <div className="box text-white" style={{ width: 180 }}>
+                  <div className="box text-white" style={{ width: 171 }}>
                     {l}
                   </div>
                 ))}
@@ -140,7 +151,7 @@ function SpecialPrize() {
                 springConfig={{ stiffness: 180, damping: 8 }}
               >
                 {defaultList[1].map((l) => (
-                  <div className="box text-white" style={{ width: 180 }}>
+                  <div className="box text-white" style={{ width: 171 }}>
                     {l}
                   </div>
                 ))}
@@ -167,7 +178,7 @@ function SpecialPrize() {
                 springConfig={{ stiffness: 180, damping: 8 }}
               >
                 {defaultList[1].map((l) => (
-                  <div className="box text-white" style={{ width: 180 }}>
+                  <div className="box text-white" style={{ width: 171 }}>
                     {l}
                   </div>
                 ))}
@@ -194,7 +205,7 @@ function SpecialPrize() {
                 springConfig={{ stiffness: 180, damping: 8 }}
               >
                 {defaultList[1].map((l) => (
-                  <div className="box text-white" style={{ width: 180 }}>
+                  <div className="box text-white" style={{ width: 171 }}>
                     {l}
                   </div>
                 ))}
@@ -228,6 +239,9 @@ function SpecialPrize() {
             <div className="btn-action">
               <button
                 onClick={() => {
+                  audio.loop = true;
+                  audio.play()
+
                   if (
                     Object.keys(winner).length === 0 &&
                     winner.constructor === Object
@@ -248,6 +262,8 @@ function SpecialPrize() {
                       setInterval1(100);
                       setTimeout(() => {
                         setStop1(true);
+                        audio.pause()
+                        setAudio(audio);
                       }, timeout);
                       break;
                     }
@@ -256,6 +272,8 @@ function SpecialPrize() {
                       setInterval2(100);
                       setTimeout(() => {
                         setStop2(true);
+                        audio.pause()
+                        setAudio(audio);
                       }, timeout);
                       break;
                     }
@@ -264,6 +282,8 @@ function SpecialPrize() {
                       setInterval3(100);
                       setTimeout(() => {
                         setStop3(true);
+                        audio.pause()
+                        setAudio(audio);
                       }, timeout);
                       break;
                     }
@@ -272,6 +292,8 @@ function SpecialPrize() {
                       setInterval4(100);
                       setTimeout(() => {
                         setStop4(true);
+                        audio.pause()
+                        setAudio(audio);
                       }, timeout);
                       break;
                     }
@@ -280,6 +302,8 @@ function SpecialPrize() {
                       setInterval5(100);
                       setTimeout(() => {
                         setStop5(true);
+                        audio.pause()
+                        setAudio(audio);
                       }, timeout);
                       break;
                     }
@@ -288,6 +312,8 @@ function SpecialPrize() {
                       setInterval6(100);
                       setTimeout(() => {
                         setStop6(true);
+                        audio.pause()
+                        setAudio(audio);
                       }, timeout);
                       break;
                     }
@@ -302,42 +328,6 @@ function SpecialPrize() {
             </div>
           ))}
         </Stack>
-        {/* <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
-          <button
-            onClick={() => {
-              setList(defaultList1);
-              setStop(false);
-              setInterval(100);
-            }}
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          >
-            Quay số
-          </button>
-          <button
-            onClick={() => {
-              const winner = data[Math.floor(Math.random() * data.length)];
-              const winnerNumber = winner.id.split("");
-              setWinnerNumber(winnerNumber);
-              setWinner(winner);
-              setStop(true);
-              setData(data.filter((e) => e.id !== winner.id));
-              let prevList = JSON.parse(localStorage.getItem(0)) || [];
-              prevList.push(winner);
-              localStorage.setItem(0, JSON.stringify(prevList));
-              setTimeout(() => {
-                setIsOpen(true);
-              }, timeout);
-            }}
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          >
-            Chốt
-          </button>
-        </Stack> */}
         <CustomDialog
           isOpen={isOpen}
           value={winner}

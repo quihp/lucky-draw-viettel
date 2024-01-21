@@ -31,9 +31,18 @@ function Home() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  const handleReset = () => {
+    localStorage.setItem("list", JSON.stringify(data));
+    for (let i = 0; i < 5; i++) {
+      localStorage.removeItem(i);
+    }
+  };
   return (
     <SiteWrapper>
-      <div className="text-center text-white text-6xl pb-10">Year End Party Viettel</div>
+      <div className="text-center text-white text-6xl pb-10">
+        Year End Party Viettel
+      </div>
 
       <Box sx={{ width: "100%", flexGrow: 1 }}>
         <Paper
@@ -44,8 +53,8 @@ function Home() {
             alignItems: "center",
             justifyContent: "center",
             height: 50,
-            width: '50%',
-            marginLeft: '25%',
+            width: "50%",
+            marginLeft: "25%",
             pl: 2,
             bgcolor: "background.default",
           }}
@@ -53,16 +62,19 @@ function Home() {
           <Typography>{steps[activeStep].label}</Typography>
         </Paper>
         <Box sx={{ width: "100%", p: 2 }}>
-          {steps[activeStep].id !== 4 ? <LuckyDraw prizeType={steps[activeStep].id} /> : <SpecialPrize/> }
-          
+          {steps[activeStep].id !== 4 ? (
+            <LuckyDraw prizeType={steps[activeStep].id} />
+          ) : (
+            <SpecialPrize />
+          )}
         </Box>
         <MobileStepper
           variant="text"
           steps={maxSteps}
           position="static"
           sx={{
-            width: '50%',
-            marginLeft: '25%'
+            width: "50%",
+            marginLeft: "25%",
           }}
           activeStep={activeStep}
           nextButton={
@@ -114,6 +126,12 @@ function Home() {
           >
             Xem kết quả
           </button>
+          <button
+            onClick={handleReset}
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
+            Reset
+          </button>
         </Stack>
         <CustomizedDialogs
           isOpen={openPrize}
@@ -124,7 +142,7 @@ function Home() {
         <CustomizedDialogs
           isOpen={openResult}
           handleClose={() => setOpenResult(false)}
-          content={<BasicTabs type="result"/>}
+          content={<BasicTabs type="result" />}
           title={<div>Kết quả</div>}
         />
       </div>
