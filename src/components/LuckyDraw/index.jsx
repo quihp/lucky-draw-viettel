@@ -17,7 +17,6 @@ const defaultList = [
 localStorage.setItem("list", JSON.stringify(data));
 function LuckyDraw(props) {
   const { prizeType } = props;
-  const [list, setList] = useState(defaultList1);
   const [stop, setStop] = useState(false);
   const [winnerNumber, setWinnerNumber] = useState([0, 0, 0, 0, 0, 0]);
   const [winner, setWinner] = useState({});
@@ -47,7 +46,7 @@ function LuckyDraw(props) {
                   delay={0 + i * 200}
                   springConfig={{ stiffness: 180, damping: 8 }}
                 >
-                  {list.map((l) => (
+                  {l.map((l) => (
                     <div className="box text-white" style={{ width: 180 }}>
                       {l}
                     </div>
@@ -93,7 +92,6 @@ function LuckyDraw(props) {
         >
           <button
             onClick={() => {
-              setList(defaultList1);
               setStop(false);
               setInterval(100);
             }}

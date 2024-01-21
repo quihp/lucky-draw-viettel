@@ -1,5 +1,10 @@
 .box {
-    font-size: 10rem;
-    text-align: center;
-    width: 180px;
-  }
+  font-size: 10rem;
+  text-align: center;
+  width: 180px;
+}
+
+.btn-action {
+  text-align: center;
+  width: 180px;
+}

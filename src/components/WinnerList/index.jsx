@@ -47,6 +47,7 @@ export default function BasicTabs(props) {
     JSON.parse(localStorage.getItem(3)),
     JSON.parse(localStorage.getItem(4)),
   ];
+  debugger
 
   const [value, setValue] = React.useState(0);
 
@@ -62,11 +63,11 @@ export default function BasicTabs(props) {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Giải khuyến khích" {...a11yProps(0)} />
-          <Tab label="Giải ba" {...a11yProps(1)} />
+          <Tab label="Giải đặc biệt" {...a11yProps(0)} />
+          <Tab label="Giải nhất" {...a11yProps(1)} />
           <Tab label="Giải nhì" {...a11yProps(2)} />
-          <Tab label="Giải nhất" {...a11yProps(3)} />
-          <Tab label="Giải đặc biệt" {...a11yProps(4)} />
+          <Tab label="Giải ba" {...a11yProps(3)} />
+          <Tab label="Giải khuyến khích" {...a11yProps(4)} />
         </Tabs>
       </Box>
       {type === "result" &&

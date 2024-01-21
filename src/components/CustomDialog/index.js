@@ -21,7 +21,7 @@ function CustomDialog(props) {
         <DialogTitle id="alert-dialog-title">{"Chúc mừng"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {value.id} - {value.Name} {value.Type === "SVTT" && "Thực tập sinh"}
+            {value.id} - {value.Name} {value.Type === "SVTT" && "- Thực tập sinh"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

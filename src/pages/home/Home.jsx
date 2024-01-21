@@ -13,18 +13,11 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import "./Home.css";
 import Stack from "@mui/material/Stack";
-import { renderNamePrize } from "../../utils";
 import LuckyDraw from "../../components/LuckyDraw";
 import { steps } from "../../components/Step";
 import CustomizedDialogs from "../../components/WinnerList/Dialog";
 import BasicTabs from "../../components/WinnerList";
-const defaultList1 = [0, 1, 2, 3, 4, 9];
-const defaultList2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const defaultList = [
-  defaultList1,
-  ...Array.from({ length: 5 }, (_) => defaultList2),
-];
-
+import SpecialPrize from "../../components/LuckyDraw/specialPrize";
 function Home() {
   const [activeStep, setActiveStep] = useState(0);
   const [openResult, setOpenResult] = useState(false);
@@ -60,7 +53,8 @@ function Home() {
           <Typography>{steps[activeStep].label}</Typography>
         </Paper>
         <Box sx={{ width: "100%", p: 2 }}>
-          <LuckyDraw prizeType={steps[activeStep].id} />
+          {steps[activeStep].id !== 4 ? <LuckyDraw prizeType={steps[activeStep].id} /> : <SpecialPrize/> }
+          
         </Box>
         <MobileStepper
           variant="text"

@@ -1,0 +1,351 @@
+import { useEffect, useState } from "react";
+
+import TextLoop from "react-text-loop";
+import MovingComponent from "react-moving-text";
+import { list as data } from "../../data/list";
+import "./index.css";
+import Stack from "@mui/material/Stack";
+import CustomDialog from "../CustomDialog";
+import Confetti from "react-dom-confetti";
+
+const defaultList1 = [0, 1, 2, 3, 4, 9];
+const defaultList2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const defaultList = [
+  defaultList1,
+  ...Array.from({ length: 5 }, (_) => defaultList2),
+];
+
+function SpecialPrize() {
+  const [stop1, setStop1] = useState(false);
+  const [stop2, setStop2] = useState(false);
+  const [stop3, setStop3] = useState(false);
+  const [stop4, setStop4] = useState(false);
+  const [stop5, setStop5] = useState(false);
+  const [stop6, setStop6] = useState(false);
+  const [winnerNumber, setWinnerNumber] = useState([0, 0, 0, 0, 0, 0]);
+  const [winner, setWinner] = useState({});
+  const [interval1, setInterval1] = useState(0);
+  const [interval2, setInterval2] = useState(0);
+  const [interval3, setInterval3] = useState(0);
+  const [interval4, setInterval4] = useState(0);
+  const [interval5, setInterval5] = useState(0);
+  const [interval6, setInterval6] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const timeout = 2000;
+  const [data, setData] = useState(JSON.parse(localStorage.getItem("list")));
+
+  useEffect(() => {
+    if (stop1 && stop2 && stop3 && stop4 && stop5 && stop6) {
+        setIsOpen(true);
+    }
+  }, [stop1, stop2, stop3, stop4, stop5, stop6])
+  return (
+    <div className="">
+      <div className="flex">
+        <Confetti active={isOpen} />
+
+        <div className="w-full">
+          <Stack
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            spacing={2}
+          >
+            {!stop1 && (
+              <TextLoop
+                mask={true}
+                interval={interval1}
+                delay={0}
+                springConfig={{ stiffness: 180, damping: 8 }}
+              >
+                {defaultList[0].map((l) => (
+                  <div className="box text-white" style={{ width: 180 }}>
+                    {l}
+                  </div>
+                ))}
+              </TextLoop>
+            )}
+            {stop1 && (
+              <MovingComponent
+                type={"slideInFromTop"}
+                duration={"100ms"}
+                delay={"0ms"}
+                timing="linear"
+                fillMode="forwards"
+                iteration={1}
+                className="text-center"
+              >
+                <div className="box text-white">{winnerNumber[0]}</div>
+              </MovingComponent>
+            )}
+            {!stop2 && (
+              <TextLoop
+                mask={true}
+                interval={interval2}
+                delay={0}
+                springConfig={{ stiffness: 180, damping: 8 }}
+              >
+                {defaultList[1].map((l) => (
+                  <div className="box text-white" style={{ width: 180 }}>
+                    {l}
+                  </div>
+                ))}
+              </TextLoop>
+            )}
+             {stop2 && (
+              <MovingComponent
+                type={"slideInFromTop"}
+                duration={100 + 1 * 500 + "ms"}
+                delay={"0ms"}
+                timing="linear"
+                fillMode="forwards"
+                iteration={1}
+                className="text-center"
+              >
+                <div className="box text-white">{winnerNumber[1]}</div>
+              </MovingComponent>
+            )}
+            {!stop3 && (
+              <TextLoop
+                mask={true}
+                interval={interval3}
+                delay={0}
+                springConfig={{ stiffness: 180, damping: 8 }}
+              >
+                {defaultList[1].map((l) => (
+                  <div className="box text-white" style={{ width: 180 }}>
+                    {l}
+                  </div>
+                ))}
+              </TextLoop>
+            )}
+            {stop3 && (
+              <MovingComponent
+                type={"slideInFromTop"}
+                duration={100 + 1 * 500 + "ms"}
+                delay={"0ms"}
+                timing="linear"
+                fillMode="forwards"
+                iteration={1}
+                className="text-center"
+              >
+                <div className="box text-white">{winnerNumber[2]}</div>
+              </MovingComponent>
+            )}
+            {!stop4 && (
+              <TextLoop
+                mask={true}
+                interval={interval4}
+                delay={0}
+                springConfig={{ stiffness: 180, damping: 8 }}
+              >
+                {defaultList[1].map((l) => (
+                  <div className="box text-white" style={{ width: 180 }}>
+                    {l}
+                  </div>
+                ))}
+              </TextLoop>
+            )}
+            {stop4 && (
+              <MovingComponent
+                type={"slideInFromTop"}
+                duration={100 + 1 * 500 + "ms"}
+                delay={"0ms"}
+                timing="linear"
+                fillMode="forwards"
+                iteration={1}
+                className="text-center"
+              >
+                <div className="box text-white">{winnerNumber[3]}</div>
+              </MovingComponent>
+            )}
+            {!stop5 && (
+              <TextLoop
+                mask={true}
+                interval={interval5}
+                delay={0}
+                springConfig={{ stiffness: 180, damping: 8 }}
+              >
+                {defaultList[1].map((l) => (
+                  <div className="box text-white" style={{ width: 180 }}>
+                    {l}
+                  </div>
+                ))}
+              </TextLoop>
+            )}
+            {stop5 && (
+              <MovingComponent
+                type={"slideInFromTop"}
+                duration={100 + 1 * 500 + "ms"}
+                delay={"0ms"}
+                timing="linear"
+                fillMode="forwards"
+                iteration={1}
+                className="text-center"
+              >
+                <div className="box text-white">{winnerNumber[4]}</div>
+              </MovingComponent>
+            )}
+            {!stop6 && (
+              <TextLoop
+                mask={true}
+                interval={interval6}
+                delay={0}
+                springConfig={{ stiffness: 180, damping: 8 }}
+              >
+                {defaultList[1].map((l) => (
+                  <div className="box text-white" style={{ width: 180 }}>
+                    {l}
+                  </div>
+                ))}
+              </TextLoop>
+            )}
+            {stop6 && (
+              <MovingComponent
+                type={"slideInFromTop"}
+                duration={100 + 1 * 500 + "ms"}
+                delay={"0ms"}
+                timing="linear"
+                fillMode="forwards"
+                iteration={1}
+                className="text-center"
+              >
+                <div className="box text-white">{winnerNumber[5]}</div>
+              </MovingComponent>
+            )}
+          </Stack>
+        </div>
+        <Confetti active={isOpen} />
+      </div>
+      <div>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+        >
+          {winnerNumber.map((w, i) => (
+            <div className="btn-action">
+              <button
+                onClick={() => {
+                  if (
+                    Object.keys(winner).length === 0 &&
+                    winner.constructor === Object
+                  ) {
+                    const winner =
+                      data[Math.floor(Math.random() * data.length)];
+                    const winnerNumber = winner.id.split("");
+                    setWinnerNumber(winnerNumber);
+                    setWinner(winner);
+                    setData(data.filter((e) => e.id !== winner.id));
+                    let prevList = JSON.parse(localStorage.getItem(0)) || [];
+                    prevList.push(winner);
+                    localStorage.setItem(0, JSON.stringify(prevList));
+                  }
+                  switch (i) {
+                    case 0: {
+                      setStop1(false);
+                      setInterval1(100);
+                      setTimeout(() => {
+                        setStop1(true);
+                      }, timeout);
+                      break;
+                    }
+                    case 1: {
+                      setStop2(false);
+                      setInterval2(100);
+                      setTimeout(() => {
+                        setStop2(true);
+                      }, timeout);
+                      break;
+                    }
+                    case 2: {
+                      setStop3(false);
+                      setInterval3(100);
+                      setTimeout(() => {
+                        setStop3(true);
+                      }, timeout);
+                      break;
+                    }
+                    case 3: {
+                      setStop4(false);
+                      setInterval4(100);
+                      setTimeout(() => {
+                        setStop4(true);
+                      }, timeout);
+                      break;
+                    }
+                    case 4: {
+                      setStop5(false);
+                      setInterval5(100);
+                      setTimeout(() => {
+                        setStop5(true);
+                      }, timeout);
+                      break;
+                    }
+                    case 5: {
+                      setStop6(false);
+                      setInterval6(100);
+                      setTimeout(() => {
+                        setStop6(true);
+                      }, timeout);
+                      break;
+                    }
+                    default:
+                      break;
+                  }
+                }}
+                class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+              >
+                Quay số
+              </button>
+            </div>
+          ))}
+        </Stack>
+        {/* <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+        >
+          <button
+            onClick={() => {
+              setList(defaultList1);
+              setStop(false);
+              setInterval(100);
+            }}
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
+            Quay số
+          </button>
+          <button
+            onClick={() => {
+              const winner = data[Math.floor(Math.random() * data.length)];
+              const winnerNumber = winner.id.split("");
+              setWinnerNumber(winnerNumber);
+              setWinner(winner);
+              setStop(true);
+              setData(data.filter((e) => e.id !== winner.id));
+              let prevList = JSON.parse(localStorage.getItem(0)) || [];
+              prevList.push(winner);
+              localStorage.setItem(0, JSON.stringify(prevList));
+              setTimeout(() => {
+                setIsOpen(true);
+              }, timeout);
+            }}
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
+            Chốt
+          </button>
+        </Stack> */}
+        <CustomDialog
+          isOpen={isOpen}
+          value={winner}
+          handleClose={() => setIsOpen(false)}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default SpecialPrize;
