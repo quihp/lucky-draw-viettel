@@ -7,7 +7,7 @@ import "./index.css";
 import Stack from "@mui/material/Stack";
 import CustomDialog from "../CustomDialog";
 import Confetti from "react-dom-confetti";
-
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 const defaultList1 = [0, 1, 2, 3, 4, 9];
 const defaultList2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const defaultList = [
@@ -45,6 +45,11 @@ function SpecialPrize() {
       winAudio.play();
     }
   }, [stop1, stop2, stop3, stop4, stop5, stop6]);
+
+  useEffect(() => {
+    console.log(data)
+    setData(JSON.parse(localStorage.getItem('list')))
+  }, [(JSON.parse(localStorage.getItem('list'))).length])
   return (
     <div className="">
       <div className="flex">
@@ -240,7 +245,7 @@ function SpecialPrize() {
               <button
                 onClick={() => {
                   audio.loop = true;
-                  audio.play()
+                  audio.play();
 
                   if (
                     Object.keys(winner).length === 0 &&
@@ -262,7 +267,7 @@ function SpecialPrize() {
                       setInterval1(100);
                       setTimeout(() => {
                         setStop1(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -272,7 +277,7 @@ function SpecialPrize() {
                       setInterval2(100);
                       setTimeout(() => {
                         setStop2(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -282,7 +287,7 @@ function SpecialPrize() {
                       setInterval3(100);
                       setTimeout(() => {
                         setStop3(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -292,7 +297,7 @@ function SpecialPrize() {
                       setInterval4(100);
                       setTimeout(() => {
                         setStop4(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -302,7 +307,7 @@ function SpecialPrize() {
                       setInterval5(100);
                       setTimeout(() => {
                         setStop5(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -312,7 +317,7 @@ function SpecialPrize() {
                       setInterval6(100);
                       setTimeout(() => {
                         setStop6(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -328,6 +333,39 @@ function SpecialPrize() {
             </div>
           ))}
         </Stack>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+        >
+          <button
+            onClick={() => {
+              setWinner({})
+              setStop1(false);
+              setStop2(false);
+              setStop3(false);
+              setStop4(false);
+              setStop5(false);
+              setStop6(false);
+              setInterval1(0);
+              setInterval2(0);
+              setInterval3(0);
+              setInterval4(0);
+              setInterval5(0);
+              setInterval6(0);
+              const listWon = JSON.parse(localStorage.getItem(4));
+              setData([...data, listWon]);
+              localStorage.setItem("list", JSON.stringify([...data, listWon]));
+              localStorage.removeItem(4);
+              setWinnerNumber([0,0,0,0,0,0])
+            }}
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
+            <RestartAltIcon/>
+          </button>
+        </Stack>
+
         <CustomDialog
           isOpen={isOpen}
           value={winner}

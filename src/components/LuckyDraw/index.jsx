@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 import TextLoop from "react-text-loop";
 import MovingComponent from "react-moving-text";
-import { list as data } from "../../data/list";
+import { list as data, list } from "../../data/list";
 import "./index.css";
 import Stack from "@mui/material/Stack";
 import CustomDialog from "../CustomDialog";
 import Confetti from "react-dom-confetti";
-
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 const defaultList1 = [0, 1, 2, 3, 4, 9];
 const defaultList2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const defaultList = [
@@ -24,11 +24,16 @@ function LuckyDraw(props) {
   const [isOpen, setIsOpen] = useState(false);
   const timeout = 3100;
   const [data, setData] = useState(JSON.parse(localStorage.getItem("list")));
-  const [audio, setAudio] = useState(new Audio("https://luckydraw.live/audio/v1/sm-roller-loop.mp3"))
-  const [winAudio, setWinAudio] = useState(new Audio("https://luckydraw.live/audio/v1/sm-spin.mp3"))
+  const [audio, setAudio] = useState(
+    new Audio("https://luckydraw.live/audio/v1/sm-roller-loop.mp3")
+  );
+  const [winAudio, setWinAudio] = useState(
+    new Audio("https://luckydraw.live/audio/v1/sm-spin.mp3")
+  );
   useEffect(() => {
     setWinnerNumber([0, 0, 0, 0, 0, 0]);
   }, [prizeType]);
+  console.log(data);
   return (
     <div className="">
       <div className="flex pb-10">
@@ -105,7 +110,7 @@ function LuckyDraw(props) {
             onClick={() => {
               setStop(false);
               audio.play();
-              audio.loop = true
+              audio.loop = true;
               // playAudio = setInterval(() => audio.play(), 1000);
               setInterval(100);
             }}
@@ -120,21 +125,33 @@ function LuckyDraw(props) {
               setWinnerNumber(winnerNumber);
               setWinner(winner);
               setStop(true);
-              setData(data.filter((e) => e.id !== winner.id));
+              const filterData = data.filter((e) => e.id !== winner.id);
+              setData(filterData);
+              localStorage.setItem("list", JSON.stringify(filterData));
               let prevList = JSON.parse(localStorage.getItem(prizeType)) || [];
               prevList.push(winner);
               localStorage.setItem(prizeType, JSON.stringify(prevList));
               setTimeout(() => {
                 setIsOpen(true);
-                winAudio.play()
-
+                winAudio.play();
               }, timeout);
-              audio.pause()
-              setAudio(audio)
+              audio.pause();
+              setAudio(audio);
             }}
             class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
           >
             Chốt
+          </button>
+          <button
+            onClick={() => {
+              const listWon = JSON.parse(localStorage.getItem(prizeType));
+              setData([...data, listWon]);
+              localStorage.setItem("list", JSON.stringify([...data, listWon]));
+              localStorage.removeItem(prizeType);
+            }}
+            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
+            <RestartAltIcon />
           </button>
         </Stack>
         <CustomDialog
@@ -142,7 +159,6 @@ function LuckyDraw(props) {
           value={winner}
           handleClose={() => setIsOpen(false)}
         />
-        
       </div>
     </div>
   );

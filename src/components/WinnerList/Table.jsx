@@ -1,15 +1,15 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 export default function BasicTable(props) {
-    const {data} = props
+  const { data, prizeType } = props;
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
@@ -23,7 +23,7 @@ export default function BasicTable(props) {
           {data?.map((row) => (
             <TableRow
               key={row.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.Name}</TableCell>
