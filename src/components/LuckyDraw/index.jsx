@@ -76,6 +76,10 @@ function LuckyDraw(props) {
   };
 
   useEffect(() => {
+    setData(JSON.parse(localStorage.getItem('list')))
+  }, [(JSON.parse(localStorage.getItem('list'))).length])
+
+  useEffect(() => {
     setHiddenWinner({});
     setWinner({});
   }, [currentStep]);
@@ -288,7 +292,9 @@ function LuckyDraw(props) {
                     // first spin
                     setHiddenWinner(winner);
                     setWinnerNumber(winnerNumber);
-                    setData(data.filter((e) => e.id !== winner.id));
+                    const filterData = data.filter((e) => e.id !== winner.id);
+                    setData(filterData);
+                    localStorage.setItem("list", JSON.stringify(filterData));
                     let prevList =
                       JSON.parse(localStorage.getItem(prizeType)) || [];
                     prevList.push(winner);
