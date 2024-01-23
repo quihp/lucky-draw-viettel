@@ -51,33 +51,8 @@ function Home() {
         Year End Party 2023
       </div>
 
-      <Box sx={{ width: "100%", flexGrow: 1 }}>
-        {/* <Paper
-          square
-          elevation={0}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: 50,
-            width: "50%",
-            marginLeft: "25%",
-            pl: 2,
-            bgcolor: "background.default",
-          }}
-        >
-          <Typography>{steps[activeStep].label}</Typography>
-        </Paper> */}
-
+      {openPrize ? <></> :<Box sx={{ width: "100%", flexGrow: 1 }}>
         <Box sx={{ width: "100%", p: 2 }}>
-          {/* {steps[activeStep].id !== 4 ? (
-            <LuckyDraw
-              prizeType={steps[activeStep].id}
-              currentStep={activeStep}
-            />
-          ) : (
-            <SpecialPrize currentStep={activeStep} />
-          )} */}
           <LuckyDraw
             prizeType={steps[activeStep].id}
             currentStep={activeStep}
@@ -200,7 +175,7 @@ function Home() {
             </button>
           </div>
         </Stepper>
-      </Box>
+      </Box>}
       <div className="py-10">
         <Stack
           direction="row"
@@ -208,84 +183,6 @@ function Home() {
           alignItems="center"
           spacing={2}
         >
-          {/* <button
-            onClick={() => setOpenPrize(true)}
-            style={{
-              background: "#463996",
-              boxShadow: "inset 0 -5px #7a62e2",
-              display: "inline-block",
-              verticalAlign: "middle",
-              textAlign: "center",
-              cursor: "pointer",
-              fontSize: "26px",
-              fontWeight: "700",
-              textTransform: "uppercase",
-              borderRadius: "5px",
-              border: "none",
-              minWidth: "288px",
-              padding: "0px",
-              transition: "all 0.3s ease 0s",
-              height: "62px",
-              lineHeight: "62px",
-              appearance: "none",
-              outline: "none",
-              color: "#bbb3ea",
-            }}
-          >
-            Giải thưởng
-          </button>
-          <button
-            onClick={() => setOpenResult(true)}
-            style={{
-              color: "#bbb3ea",
-              background: "#463996",
-              boxShadow: "inset 0 -5px #7a62e2",
-              display: "inline-block",
-              verticalAlign: "middle",
-              textAlign: "center",
-              cursor: "pointer",
-              fontSize: "26px",
-              fontWeight: "700",
-              textTransform: "uppercase",
-              borderRadius: "5px",
-              border: "none",
-              minWidth: "288px",
-              padding: "0px",
-              transition: "all 0.3s ease 0s",
-              height: "62px",
-              lineHeight: "62px",
-              appearance: "none",
-              outline: "none",
-            }}
-          >
-            Xem kết quả
-          </button>
-          <button
-            onClick={handleReset}
-            style={{
-              color: "#bbb3ea",
-              background: "#463996",
-              boxShadow: "inset 0 -5px #7a62e2",
-              display: "inline-block",
-              verticalAlign: "middle",
-              textAlign: "center",
-              cursor: "pointer",
-              fontSize: "26px",
-              fontWeight: "700",
-              textTransform: "uppercase",
-              borderRadius: "5px",
-              border: "none",
-              minWidth: "288px",
-              padding: "0px",
-              transition: "all 0.3s ease 0s",
-              height: "62px",
-              lineHeight: "62px",
-              appearance: "none",
-              outline: "none",
-            }}
-          >
-            Reset
-          </button> */}
           <Box
             component="span"
             sx={{
@@ -318,10 +215,10 @@ function Home() {
                 color: "#fbce3d",
               },
             }}
-            onClick={() => setOpenPrize(true)}
+            onClick={() => setOpenPrize(!openPrize)}
           >
             <CardGiftcardIcon htmlColor="#fff" fontSize="large" />
-            <span style={{ marginLeft: "0.4rem" }}>Thông tin Giải</span>
+            <span style={{ marginLeft: "0.4rem" }}>{openPrize ? 'Quay số' : 'Thông tin Giải'}</span>
           </Box>
           <Box
             component="span"
@@ -342,18 +239,6 @@ function Home() {
             <span style={{ marginLeft: "0.4rem" }}>Reset</span>
           </Box>
         </Stack>
-        <CustomizedDialogs
-          isOpen={openPrize}
-          handleClose={() => setOpenPrize(false)}
-          content={<BasicTabs type="prize" />}
-          title={<div>Giải thưởng</div>}
-        />
-        <CustomizedDialogs
-          isOpen={openResult}
-          handleClose={() => setOpenResult(false)}
-          content={<BasicTabs type="result" />}
-          title={<div>Kết quả</div>}
-        />
       </div>
     </SiteWrapper>
   );

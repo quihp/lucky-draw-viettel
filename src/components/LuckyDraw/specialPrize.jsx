@@ -49,6 +49,10 @@ function SpecialPrize(props) {
     }
   }, [stop1, stop2, stop3, stop4, stop5, stop6]);
 
+  useEffect(() => {
+    setData(JSON.parse(localStorage.getItem('list')))
+  }, [(JSON.parse(localStorage.getItem('list'))).length])
+
   const priceImageSelections = {
     1: "https://luckydraw.live/images/temp/bronze-prize.svg",
     2: "https://luckydraw.live/images/temp/silver-prize.svg",
@@ -381,39 +385,7 @@ function SpecialPrize(props) {
             </div>
           ))}
         </Stack>
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
-          <button
-            onClick={() => {
-              setWinner({})
-              setStop1(false);
-              setStop2(false);
-              setStop3(false);
-              setStop4(false);
-              setStop5(false);
-              setStop6(false);
-              setInterval1(0);
-              setInterval2(0);
-              setInterval3(0);
-              setInterval4(0);
-              setInterval5(0);
-              setInterval6(0);
-              const listWon = JSON.parse(localStorage.getItem(4));
-              setData([...data, listWon]);
-              localStorage.setItem("list", JSON.stringify([...data, listWon]));
-              localStorage.removeItem(4);
-              setWinnerNumber([0,0,0,0,0,0])
-            }}
-            class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
-          >
-            <RestartAltIcon/>
-          </button>
-        </Stack>
-
+      
         <CustomDialog
           isOpen={isOpen}
           value={winner}
