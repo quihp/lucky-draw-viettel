@@ -7,7 +7,7 @@ import "./index.css";
 import Stack from "@mui/material/Stack";
 import CustomDialog from "../CustomDialog";
 import Confetti from "react-dom-confetti";
-import Test from '../Audio/Au.mp3'
+import Test from "../Audio/Au.mp3";
 
 const defaultList1 = [0, 1, 2, 3, 4, 9];
 const defaultList2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -36,9 +36,7 @@ function LuckyDraw(props) {
   const [isOpen, setIsOpen] = useState(false);
   const timeout = 3100;
   const [data, setData] = useState(JSON.parse(localStorage.getItem("list")));
-  const [audio, setAudio] = useState(
-    new Audio(Test)
-  );
+  const [audio, setAudio] = useState(new Audio(Test));
   const [winAudio, setWinAudio] = useState(
     new Audio("https://luckydraw.live/audio/v1/sm-spin.mp3")
   );
@@ -76,8 +74,8 @@ function LuckyDraw(props) {
   };
 
   useEffect(() => {
-    setData(JSON.parse(localStorage.getItem('list')))
-  }, [(JSON.parse(localStorage.getItem('list'))).length])
+    setData(JSON.parse(localStorage.getItem("list")));
+  }, [JSON.parse(localStorage.getItem("list")).length]);
 
   useEffect(() => {
     setHiddenWinner({});
@@ -88,6 +86,45 @@ function LuckyDraw(props) {
     stopObj,
     currentNumber,
   });
+
+  const customer = [
+    "900011",
+    "900012",
+    "900013",
+    "900014",
+    "900015",
+    "900016",
+    "900017",
+    "900018",
+    "900019",
+    "900020",
+    "900021",
+    "900022",
+    "900023",
+    "900024",
+    "900025",
+    "900026",
+    "900027",
+    "900028",
+    "900029",
+    "900030",
+  ];
+
+  const getWinnerInfo = () => {
+    if (winner) {
+      if (winner.Type) {
+        return winner.Type === "SVTT"
+          ? "Thực tập sinh - " + winner.Name
+          : winner.id + " - " + winner.Name;
+      } else {
+        return winner.Name;
+      }
+    } else {
+      return "";
+    }
+  };
+
+  const winnerInfo = getWinnerInfo();
 
   return (
     <div className="">
@@ -115,24 +152,46 @@ function LuckyDraw(props) {
             />
           )}
         </div>
-        <span
+        <div
           style={{
-            fontSize: "60px",
+            fontSize:
+              customer.includes(winner.id) &&
+              !["900011", "900012"].includes(winner.id)
+                ? "40px"
+                : "60px",
             letterSpacing: "2px",
             padding: "0 20px",
-            stroke: '#f8fafc',
+            stroke: "#f8fafc",
             strokeWidth: 2,
             color: "#070e41",
-            fontWeight: 'bold',
+            fontWeight: "bold",
             marginTop: "1rem",
-            display: "inline-block",
+            display: "block",
             minWidth: "100px",
-            height: "90px",
+            height: "150px",
+            textAlign: customer.includes(winner.id) ? "center" : "left",
           }}
           id="winner"
         >
-          {`${winner?.Name ? `${winner?.id} - ${winner?.Name}` : ""}`}
-        </span>
+          {/* {`${winner?.Name ? `${winner?.id} - ${winner?.Name}` : ""}`} */}
+          {customer.includes(winner.id) ? (
+            winnerInfo.includes("-") ? (
+              winner.id === "900028" ? (
+                winnerInfo
+              ) : (
+                <>
+                  {winnerInfo.split("-").map((winner) => (
+                    <div>{winner}</div>
+                  ))}
+                </>
+              )
+            ) : (
+              winnerInfo
+            )
+          ) : (
+            winnerInfo
+          )}
+        </div>
       </div>
       <div className="flex pb-10">
         <Confetti active={isOpen} />
