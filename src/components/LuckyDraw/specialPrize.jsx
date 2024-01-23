@@ -15,7 +15,7 @@ const defaultList = [
   ...Array.from({ length: 5 }, (_) => defaultList2),
 ];
 
-function SpecialPrize() {
+function SpecialPrize(props) {
   const [stop1, setStop1] = useState(false);
   const [stop2, setStop2] = useState(false);
   const [stop3, setStop3] = useState(false);
@@ -39,14 +39,67 @@ function SpecialPrize() {
   const [winAudio, setWinAudio] = useState(
     new Audio("https://luckydraw.live/audio/v1/sm-spin.mp3")
   );
+
+  const { currentStep } = props;
+
   useEffect(() => {
     if (stop1 && stop2 && stop3 && stop4 && stop5 && stop6) {
       setIsOpen(true);
       winAudio.play();
     }
   }, [stop1, stop2, stop3, stop4, stop5, stop6]);
+
+  const priceImageSelections = {
+    1: "https://luckydraw.live/images/temp/bronze-prize.svg",
+    2: "https://luckydraw.live/images/temp/silver-prize.svg",
+    3: "https://luckydraw.live/images/temp/gold-prize.svg",
+    4: "https://luckydraw.live/images/temp/diamond-prize.svg",
+  };
+
   return (
     <div className="">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "2rem",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "442px",
+            margin: "0 auto",
+          }}
+        >
+          {priceImageSelections[currentStep] && (
+            <img
+              src={priceImageSelections[currentStep]}
+              height="120px"
+              width="120px"
+              alt="#"
+            />
+          )}
+        </div>
+        <span
+          style={{
+            fontSize: "60px",
+            letterSpacing: "2px",
+            // textShadow: "0 0 6px hsla(0,0%,100%,.7)",
+            padding: "0 20px",
+            color: "#fff",
+            marginTop: "1rem",
+            display: "inline-block",
+            minWidth: "100px",
+            height: "90px",
+          }}
+          id="winner"
+        >
+          {`${winner?.Name ? `${winner?.id} - ${winner?.Name}` : ""}`}
+        </span>
+      </div>
+
       <div className="flex">
         <Confetti active={isOpen} />
 
@@ -240,7 +293,7 @@ function SpecialPrize() {
               <button
                 onClick={() => {
                   audio.loop = true;
-                  audio.play()
+                  audio.play();
 
                   if (
                     Object.keys(winner).length === 0 &&
@@ -262,7 +315,7 @@ function SpecialPrize() {
                       setInterval1(100);
                       setTimeout(() => {
                         setStop1(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -272,7 +325,7 @@ function SpecialPrize() {
                       setInterval2(100);
                       setTimeout(() => {
                         setStop2(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -282,7 +335,7 @@ function SpecialPrize() {
                       setInterval3(100);
                       setTimeout(() => {
                         setStop3(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -292,7 +345,7 @@ function SpecialPrize() {
                       setInterval4(100);
                       setTimeout(() => {
                         setStop4(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -302,7 +355,7 @@ function SpecialPrize() {
                       setInterval5(100);
                       setTimeout(() => {
                         setStop5(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
@@ -312,7 +365,7 @@ function SpecialPrize() {
                       setInterval6(100);
                       setTimeout(() => {
                         setStop6(true);
-                        audio.pause()
+                        audio.pause();
                         setAudio(audio);
                       }, timeout);
                       break;
