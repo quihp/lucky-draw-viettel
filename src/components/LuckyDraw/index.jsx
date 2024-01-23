@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import TextLoop from "react-text-loop";
 import MovingComponent from "react-moving-text";
-import { list as data } from "../../data/list";
+import { list as data, list } from "../../data/list";
 import "./index.css";
 import Stack from "@mui/material/Stack";
 import CustomDialog from "../CustomDialog";

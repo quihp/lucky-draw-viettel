@@ -72,7 +72,7 @@ export default function BasicTabs(props) {
       {type === "result" &&
         list.map((l, i) => (
           <CustomTabPanel value={value} index={i}>
-            <BasicTable data={l} />
+            <BasicTable data={l} prizeType={i}/>
           </CustomTabPanel>
         ))}
       {type === "prize" &&
