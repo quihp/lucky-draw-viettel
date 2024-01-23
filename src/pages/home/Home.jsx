@@ -81,7 +81,7 @@ function Home() {
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96" src={kkPrize} alt="product image" />
+                  <img className="w-96"  src={kkPrize} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
@@ -101,7 +101,7 @@ function Home() {
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96" src={Prize3} alt="product image" />
+                  <img className="w-96"  src={Prize3} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
@@ -117,11 +117,11 @@ function Home() {
                     Giải nhì
                   </span>
                   <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                    1 Pin sạc dự phòng Anker 323
+                    1 Máy lọc không khí Electrolux Fa31
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96" src={Prize2} alt="product image" />
+                  <img className="w-96"  src={Prize2} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
@@ -141,7 +141,7 @@ function Home() {
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96" src={Prize1} alt="product image" />
+                  <img className="w-96"  src={Prize1} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
@@ -153,17 +153,16 @@ function Home() {
                 alignItems="center"
               >
                 <div className="">
-                <span className="text-5xl font-bold text-gray-900 dark:text-white">
+                  <span className="text-5xl font-bold text-gray-900 dark:text-white">
                     Giải đặc biệt
                   </span>
                   <h5 class="text-3xl stroke-slate-700 font-semibold tracking-tight text-gray-900 dark:text-white">
                     1 Smart Tivi SAMSUNG
                   </h5>
-                  
                 </div>
                 <div>
                   <img
-                    className="w-96"
+                    className="w-96" 
                     src={PrizeSpecial}
                     alt="product image"
                   />
