@@ -23,6 +23,9 @@ import Prize3 from "../../img/tab-a7-lite-332_main_909.png";
 import Prize2 from "../../img/lc-khong-khi-electrolux-fa31-202gy_a2245e14.png";
 import Prize1 from "../../img/loa_karaoke_di_dong_nova_audio_nv_300_platinum_mau_den_6.png";
 import PrizeSpecial from "../../img/smart-tivi-samsung-4k-55.png";
+import CustomDialog from "../../components/CustomDialog";
+import CustomizedDialogs from "../../components/WinnerList/Dialog";
+import BasicTabs from "../../components/WinnerList";
 
 function Home() {
   const [activeStep, setActiveStep] = useState(0);
@@ -61,8 +64,8 @@ function Home() {
           <Carousel
             activeIndex={index}
             interval={null}
-            prevLabel={"Trở lại"}
-            nextLabel={"Tiếp theo"}
+            prevLabel={""}
+            nextLabel={""}
             onSelect={handleSelect}
           >
             <Carousel.Item>
@@ -76,12 +79,12 @@ function Home() {
                   <span className="text-5xl stroke-1 stroke-slate-200 font-bold text-gray-900 dark:text-white">
                     Giải khuyến khích
                   </span>
-                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                    4 Pin sạc dự phòng Anker 323
+                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white mt-[20px]">
+                    Pin sạc dự phòng Anker 323
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96"  src={kkPrize} alt="product image" />
+                  <img className="w-[40rem]"  src={kkPrize} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
@@ -96,16 +99,16 @@ function Home() {
                   <span className="text-5xl font-bold text-gray-900 dark:text-white">
                     Giải ba
                   </span>
-                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                    2 Samsung Galaxy Tab A7 Lite
+                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white mt-[20px]">
+                    Samsung Galaxy Tab A7 Lite
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96"  src={Prize3} alt="product image" />
+                  <img className="w-[36rem] mt-[40px]"  src={Prize3} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
-            <Carousel.Item>
+            <Carousel.Item className='mt-[40px]'>
               <Stack
                 direction="row"
                 spacing={2}
@@ -116,12 +119,12 @@ function Home() {
                   <span className="text-5xl font-bold text-gray-900 dark:text-white">
                     Giải nhì
                   </span>
-                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white mt-[20px]">
                     1 Máy lọc không khí Electrolux Fa31
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96"  src={Prize2} alt="product image" />
+                  <img className="w-[50rem]"  src={Prize2} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
@@ -136,12 +139,12 @@ function Home() {
                   <span className="text-5xl font-bold text-gray-900 dark:text-white">
                     Giải nhất
                   </span>
-                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                  <h5 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white mt-[20px]">
                     1 Loa Di Động Nova Audio NV-300
                   </h5>
                 </div>
                 <div>
-                  <img className="w-96"  src={Prize1} alt="product image" />
+                  <img className="w-[40rem]"  src={Prize1} alt="product image" />
                 </div>
               </Stack>
             </Carousel.Item>
@@ -156,13 +159,13 @@ function Home() {
                   <span className="text-5xl font-bold text-gray-900 dark:text-white">
                     Giải đặc biệt
                   </span>
-                  <h5 class="text-3xl stroke-slate-700 font-semibold tracking-tight text-gray-900 dark:text-white">
+                  <h5 class="text-3xl stroke-slate-700 font-semibold tracking-tight text-gray-900 dark:text-white mt-[20px]">
                     1 Smart Tivi SAMSUNG
                   </h5>
                 </div>
                 <div>
                   <img
-                    className="w-96" 
+                    className="w-[40rem]" 
                     src={PrizeSpecial}
                     alt="product image"
                   />
@@ -362,6 +365,12 @@ function Home() {
             <RestartAltIcon htmlColor="#fff" fontSize="large" />
             <span style={{ marginLeft: "0.4rem" }}>Reset</span>
           </Box>
+          <CustomizedDialogs
+          isOpen={openResult}
+          handleClose={() => setOpenResult(false)}
+          content={<BasicTabs type="result" />}
+          title={<div>Kết quả</div>}
+        />
         </Stack>
       </div>
     </SiteWrapper>

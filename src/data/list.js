@@ -30,11 +30,6 @@ export const list = [
     Type: "HĐLĐ",
   },
   {
-    id: "002629",
-    Name: "Đinh Thị Hà Thanh",
-    Type: "HĐLĐ",
-  },
-  {
     id: "002564",
     Name: "Đinh Công Đức",
     Type: "HĐLĐ",
@@ -1260,11 +1255,6 @@ export const list = [
     Type: "HĐLĐ",
   },
   {
-    id: "184582",
-    Name: "Nguyễn Ngọc Trọng",
-    Type: "HĐLĐ",
-  },
-  {
     id: "250945",
     Name: "Nguyễn Tấn Phú",
     Type: "HĐLĐ",
@@ -1371,7 +1361,7 @@ export const list = [
   },
   {
     id: "900011",
-    Name: "Phan Thị Mai Mai",
+    Name: "Phan Thị Mai",
     Type: "",
   },
   {

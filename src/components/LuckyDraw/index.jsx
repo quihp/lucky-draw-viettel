@@ -312,6 +312,26 @@ function LuckyDraw(props) {
                 }
               }}
               style={{
+                // color: "rgb(106, 76, 8)",
+                // boxShadow: "rgb(254, 242, 105) 0px -5px inset",
+                // background:
+                //   "url(https://luckydraw.live/images/btn-yellow-bg.jpg)",
+                // display: "inline-block",
+                // verticalAlign: "middle",
+                // textAlign: "center",
+                // cursor: "pointer",
+                // fontSize: "26px",
+                // fontWeight: "700",
+                // textTransform: "uppercase",
+                // borderRadius: "5px",
+                // border: "none",
+                // minWidth: "288px",
+                // padding: "0px",
+                // transition: "all 0.3s ease 0s",
+                // height: "62px",
+                // lineHeight: "62px",
+                // appearance: "none",
+                // outline: "none",
                 color: "rgb(106, 76, 8)",
                 boxShadow: "rgb(254, 242, 105) 0px -5px inset",
                 background:
